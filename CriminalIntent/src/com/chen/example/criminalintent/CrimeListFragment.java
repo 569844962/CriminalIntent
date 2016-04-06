@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.chen.example.criminalintent.modle.Crime;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -28,9 +29,19 @@ public class CrimeListFragment extends ListFragment {
 	}
 	
 	@Override
+	public void onResume() {
+		// TODO 自动生成的方法存根
+		super.onResume();
+	}
+	
+	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
+		//Get the crime form the adapter
 		Crime c=((CrimeAdapter)getListAdapter()).getItem(position);
-		Toast.makeText(getActivity(), c.getTitle(), Toast.LENGTH_SHORT).show();
+		//start CrimeActivity
+		Intent i=new Intent(getActivity(),CrimeActivity.class);
+		i.putExtra(CrimeFragment.EXTRA_CRIME_ID, c.getId());
+		startActivity(i);
 	}
 
 	private class CrimeAdapter extends ArrayAdapter<Crime> {
