@@ -30,8 +30,8 @@ public class CrimeListFragment extends ListFragment {
 	
 	@Override
 	public void onResume() {
-		// TODO 自动生成的方法存根
 		super.onResume();
+		((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
 	}
 	
 	@Override
@@ -39,7 +39,9 @@ public class CrimeListFragment extends ListFragment {
 		//Get the crime form the adapter
 		Crime c=((CrimeAdapter)getListAdapter()).getItem(position);
 		//start CrimeActivity
-		Intent i=new Intent(getActivity(),CrimeActivity.class);
+//		Intent i=new Intent(getActivity(),CrimeActivity.class);
+		//start CrimePagerActivity with this crime
+		Intent i=new Intent(getActivity(),CrimePagerActivity.class);
 		i.putExtra(CrimeFragment.EXTRA_CRIME_ID, c.getId());
 		startActivity(i);
 	}
